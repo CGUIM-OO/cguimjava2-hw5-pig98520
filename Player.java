@@ -1,5 +1,38 @@
+import java.util.ArrayList;
 
-public class Dealer extends Person {
+public class Player extends Person{
+	private String name; //玩家姓名
+	private int chips; //玩家有的籌碼
+	private int bet; //預計下注金額
+	public Player(String name, int chips) {
+		this.name=name;
+		this.chips=chips;
+	}
+	public String getName() {
+		return name;
+	}
+	public int makeBet() {
+		if(chips!=0) {
+			bet=1; //基本暫定1元
+			//System.out.println("您這回合下注了"+bet+"元");
+			return bet;
+		}
+		else {
+			//System.out.println("您已沒有足夠的籌碼能夠下注了~");
+			return 0;
+		}
+	}
+
+	public int getCurrentChips() {
+		return chips;
+	}
+	public void increaseChips (int diff) {
+		chips=chips+diff;
+	}
+	public void sayHello() {
+		System.out.println("Hello, I am " + name + ".");
+		System.out.println("I have " + chips + " chips.");
+	}
 	@Override
 	public boolean hit_me(Table tbl) {
 		int total_value = getTotalValue();
@@ -33,7 +66,5 @@ public class Dealer extends Person {
 					return false;
 			}
 		}
-
-	}
-
+	} 
 }
